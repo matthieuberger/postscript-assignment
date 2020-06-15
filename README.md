@@ -104,9 +104,9 @@ SpicyBajo
 
 ## Work summary
 
-After reading the full readme I decided to split the work in 2 phases:
+After reading the full readme I decided to split the work in 3 phases:
 
-- 1. Building the API and make sure we are able to: 
+#### 1. Building the API and make sure we are able to: 
     - [x] List products with nested messages
     - [x] Get a single product with it's ID
     - [x] Create a message for a product
@@ -118,7 +118,7 @@ Note: Phase 1 took me about 2 hours. I lost some time setting up twilio-cli (for
 
 Note 2: I usualy don't push creds on github, we all know this is a bad idea. But considering this repo is private and the risks if someone find my twilio creds, I'll make an exception here :) You will find them in the .env file.
 
-- 2. Building the app:
+#### 2. Building the app:
     - [x] List products with nested messages
     - [x] Select a specific product and list messages
     - [x] Create a message for a product
@@ -133,7 +133,7 @@ Chosen stack will be React + Context API + Hooks + Material UI + Axios.
 
 Note: Phase 1 took me about 2:30 hours. I know this is not the most beautiful UI you've seen but it does the job. Spend a bunch of time on material-ui documentation. 
 
-- 3. Making sure evrything works 
+#### 3. Making sure evrything works 
 
   This is the last part, making all the feature you promise to deliver works. This part is important as you might have tested all the feature as you built them and evrything worked but you better be sure everything works as expected as the end. So definitely check what we are submitting matches expectations.
 
