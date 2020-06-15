@@ -141,13 +141,6 @@ Note: Phase 1 took me about 2:30 hours. I know this is not the most beautiful UI
 - [x] Users should be able to query a list of available product_ids -> Product list is on the left side. 
 - [x] Users should be able to create and save a message for a product
 - [x] Saving a message requires a product_id to be attached to the message and should throw an error otherwise
-For example, the message object might look like 
-```
-{ 
-  "message" : "Some string",
-  "Product_id":1
-}
-  ```
 - [x] Users should be able to view messages for a product
 - [x] Users should be able to send messages for a product
 
