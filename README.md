@@ -102,6 +102,63 @@ pkearney06
 SpicyBajo
 
 
+## Work summary
 
+After reading the full readme I decided to split the work in 2 phases:
 
- 
+- 1. Building the API and make sure we are able to: 
+    - [x] List products with nested messages
+    - [x] Get a single product with it's ID
+    - [x] Create a message for a product
+    - [x] Send a message using twilio
+    - [x] Make sure all above statements are working using postman or curl
+    - [x] Clean $ refactor code (Added decorators..)
+
+Note: Phase 1 took me about 2 hours. I lost some time setting up twilio-cli (for some reason homebrew messed up the install of twilio-cli). It also been a long time since I used SQLAlchemy so I needed a quick refresh. Never used marshmallow before but it took me couple minutes to set up and it quicly provided serializers so no regret on that one.
+
+Note 2: I usualy don't push creds on github, we all know this is a bad idea. But considering this repo is private and the risks if someone find my twilio creds, I'll make an exception here :) You will find them in the .env file.
+
+- 2. Building the app:
+    - [x] List products with nested messages
+    - [x] Select a specific product and list messages
+    - [x] Create a message for a product
+    - [x] Send a message with a field to specify phone number
+
+Chosen stack will be React + Context API + Hooks + Material UI + Axios. 
+ - React: I'm confortable using it. Obviously I could have done such a project using html & jquery only but when I need to develop a quick app I use React so I decided to use it here as well.
+ - Axios is promise-based library used to perform api request. It is really easy to use and I use it most of the time so that's why I choose to use it instead of native fetch lib.
+ - Choosing to use Context API over Redux or a light version of redux. Context API is enough for this use case, I could have use the reducer API but IMHO it was even too much for our use case. Redux is good when it comes to complex app. 
+ - Hooks: Using react hooks to write code faster and cleaner. Also usualy I use Typescript but there is no justification for it as the project is really small.
+ - Material UI: The better lib I know that provide clean material design components for free. And also very easy to use!
+
+Note: Phase 1 took me about 2:30 hours. I know this is not the most beautiful UI you've seen but it does the job. Spend a bunch of time on material-ui documentation. 
+
+- 3. Making sure evrything works 
+
+  This is the last part, making all the feature you promise to deliver works. This part is important as you might have tested all the feature as you built them and evrything worked but you better be sure everything works as expected as the end. So definitely check what we are submitting matches expectations.
+
+  Checks:
+- [x] Users should be able to query a list of available product_ids -> Product list is on the left side. 
+- [x] Users should be able to create and save a message for a product
+- [x] Saving a message requires a product_id to be attached to the message and should throw an error otherwise
+For example, the message object might look like 
+```
+{ 
+  "message" : "Some string",
+  "Product_id":1
+}
+  ```
+- [x] Users should be able to view messages for a product
+- [x] Users should be able to send messages for a product
+
+- [x] This should utilize the Twilio API -- use a Twilio trial account, it is OK if the message does not send to outside / non-whitelisted numbers.
+
+ Note: Phase 3 took me about 30 minutes. Just making sure that after rebuilding the containers from scratch everything was working as expected. Also do a bit of cleaning (removing console.log,  etc...). 
+
+ ### How to use
+
+ Start containers with the classic `docker-compose up`. The database will be populated automaticaly after the product table is created (9 products will be inserted). 
+ Then go to `http://localhost:3000`. You will find a list of product on the left side of the app. Click on one of them. Then you will see the product appear (Title and ID). To add a message you must click on the `Add Message` button which will open a modal with a field. Once the message is added, the modal close itself and the product is updated with this new message in the list. To send a message, you must click on the `Send` button bellow the message you want to send. A modal will prompt and you must enter a phone number. Click on send and when the message is send the modal disapears. 
+
+Please let me know if you have questions ! 
+
