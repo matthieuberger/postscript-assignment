@@ -24,6 +24,10 @@ services:
       STAGE: dev
       SQLALCHEMY_DATABASE_URI: postgresql+psycopg2://postscript:dev@db/postscript
       SQLALCHEMY_TRACK_MODIFICATIONS: 0
+      TWILIO_AUTH_TOKEN: ${TWILIO_AUTH_TOKEN}
+      TWILIO_ACCOUNT_SID: ${TWILIO_ACCOUNT_SID}
+      TWILIO_DEFAULT_PHONE_NUM: ${TWILIO_DEFAULT_PHONE_NUM}
+
     networks:
       - postscript
     ports:
@@ -32,16 +36,16 @@ services:
       - ./api:/opt/api
     restart: always
 
-  # app:
-  #   build: ./app
-  #   user: postscript
-  #   depends_on:
-  #     - api
-  #   networks:
-  #     - postscript
-  #   ports:
-  #     - 3000:3000
-  #   stdin_open: true
+  app:
+    build: ./app
+    user: postscript
+    depends_on:
+      - api
+    networks:
+      - postscript
+    ports:
+      - 3000:3000
+    stdin_open: true
 
 networks:
   postscript:

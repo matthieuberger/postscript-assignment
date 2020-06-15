@@ -9,6 +9,9 @@ Flask-SQLAlchemy = "==2.4.1"
 psycopg2 = "==2.8.5"
 twilio = "==6.23.1"
 marshmallow = "==3.6.1"
+flask_cors = "==3.0.7"
+flask-marshmallow = "==0.13.0"
+marshmallow-sqlalchemy = "==0.23.1"
 
 [dev-packages]
 black = "*"

@@ -4,8 +4,11 @@ import os
 import typing as t
 
 from flask import Flask
+from flask_cors import CORS
+from twilio.rest import Client
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+
 
 
 def app_factory(config: t.Optional[t.Dict[str, t.Any]] = None) -> Flask:
@@ -38,6 +41,8 @@ def app_factory(config: t.Optional[t.Dict[str, t.Any]] = None) -> Flask:
     app.config.update(**(config or {}))
     app.db = database_factory(app)
     app.ma = serializer_dactroy(app)
+    app.twilio = twilio_factory(app)
+    cors_header(app)
     return app
 
 
@@ -53,8 +58,11 @@ def database_factory(app: Flask) -> SQLAlchemy:
     Returns:
         SQLAlchemy: The SQLAlchemy engine
     """
-    db = SQLAlchemy()
+    from models import db
+
     db.init_app(app)
+    app.app_context().push()
+    db.create_all()
     return db
 
 def serializer_dactroy(app: Flask) -> Marshmallow:
@@ -66,6 +74,30 @@ def serializer_dactroy(app: Flask) -> Marshmallow:
     Returns:
         Marshmallow: Marshmallow
     """
-    ma = Marshmallow()
+    from models import ma
+
     ma.init_app(app)
     return ma
+
+def twilio_factory(app: Flask) -> Client:
+    """Bootstrap twilio
+
+    Args:
+        app (Flask): The flask app to add this db engine to
+    
+    Returns:
+        Client: Twilio client
+    """
+    ACCOUNT_SID = os.environ.get('TWILIO_ACCOUNT_SID')
+    AUTH_TOKEN = os.environ.get('TWILIO_AUTH_TOKEN')
+    app.config['PHONE_NUM'] = os.environ.get('TWILIO_DEFAULT_PHONE_NUM')
+    return Client(ACCOUNT_SID, AUTH_TOKEN)
+
+
+def cors_header(app: Flask):
+    """Add CORS to make sure we can access the API easily from our React app later.
+
+    Args:
+        app (Flask): The flask app to add this db engine to
+    """
+    CORS(app)
