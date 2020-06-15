@@ -114,6 +114,11 @@ After reading the full readme I decided to split the work in 3 phases:
     - [x] Make sure all above statements are working using postman or curl
     - [x] Clean $ refactor code (Added decorators..)
 
+Chosen stack:
+- Marshmallow & marshmallow-sqlalchemy for the scehmas so easy to work with.
+- Flask_cors because it solev the problem of origin checkup made by your browser when using the app.
+- Using decorators because it helps to have a cleaner code
+
 Note: Phase 1 took me about 2 hours. I lost some time setting up twilio-cli (for some reason homebrew messed up the install of twilio-cli). It also been a long time since I used SQLAlchemy so I needed a quick refresh. Never used marshmallow before but it took me couple minutes to set up and it quicly provided serializers so no regret on that one.
 
 Note 2: I usualy don't push creds on github, we all know this is a bad idea. But considering this repo is private and the risks if someone find my twilio creds, I'll make an exception here :) You will find them in the .env file.
