@@ -132,3 +132,7 @@ dmypy.json
 
 # Postgres data
 postgres-data/*
+
+
+# Env file
+.env
